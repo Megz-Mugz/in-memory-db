@@ -1,0 +1,2 @@
+# Ignore the compiled executable & any intermediate files
+src/main
