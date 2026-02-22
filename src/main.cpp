@@ -1,8 +1,12 @@
 #include <iostream>
-
+#include "../include/parser.hpp"
 
 int main(){
-    std::cout << "Hello world" << std::endl;
+    std::string query = "SELECT * FROM USERS WHERE id = 1;";
+    
+    Parser parser;
+    parser.parse_query(query);
 
-    return 0;
+    std::cout << "finished main" << std::endl;
+    return EXIT_SUCCESS;
 }
