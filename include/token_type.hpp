@@ -19,8 +19,8 @@ enum class TokenType {
 
 
 
-inline const char* token_to_string(TokenType t) {
-    switch (t) {
+inline const char* token_to_string(TokenType token) {
+    switch (token) {
         case TokenType::END_OF_FILE_T: return "EOF";
         case TokenType::SELECT_T: return "SELECT";
         case TokenType::CREATE_T: return "CREATE";
