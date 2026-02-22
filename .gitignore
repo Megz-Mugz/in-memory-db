@@ -1,2 +1,59 @@
-# Ignore the compiled executable & any intermediate files
-src/main
+# =========================
+# Build directories
+# =========================
+build/
+cmake-build-*/
+out/
+
+# =========================
+# Compiled binaries
+# =========================
+main
+*.out
+*.exe
+*.app
+
+# =========================
+# Object files
+# =========================
+*.o
+*.obj
+*.so
+*.dylib
+*.a
+
+# =========================
+# Dependency files
+# =========================
+*.d
+*.gcno
+*.gcda
+*.gcov
+
+# =========================
+# macOS junk
+# =========================
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# =========================
+# VSCode (keep settings optional)
+# =========================
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Temporary files
+# =========================
+*.tmp
+*.swp
+*~
