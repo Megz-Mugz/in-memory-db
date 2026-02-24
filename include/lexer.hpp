@@ -10,6 +10,10 @@ public:
     Lexer(const std::string& query);
     TokenType get_next_token(void);
 
+    // TODO if something weird breaks, adding this public function might've caused it
+    std::size_t get_word_count(void);
+    void increase_word_count(void);
+
 private:
 
     void skip_whitespace();

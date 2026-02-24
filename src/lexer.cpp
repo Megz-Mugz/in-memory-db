@@ -11,6 +11,15 @@ Lexer::Lexer(const std::string& query)
 {
 }
 
+std::size_t Lexer::get_word_count(){
+    return word_count;
+}
+
+void Lexer::increase_word_count(){
+    word_count++;
+}
+
+
 TokenType Lexer::get_next_token(){
 
         // skip white space
@@ -75,6 +84,9 @@ std::optional<TokenType> Lexer::tokenize_operators(){
         return std::nullopt;
         break;
     }
+
+    // catch all case
+    return std::nullopt; 
 }
 
 std::optional<TokenType> Lexer::tokenize_keywords_and_identifiers(){

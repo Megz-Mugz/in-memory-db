@@ -1,5 +1,6 @@
 #include "../include/parser.hpp"
 #include "../include/lexer.hpp"
+#include <print>
 
 Parser::Parser(const std::string& query)
     : _lexer(query),
@@ -10,7 +11,7 @@ Parser::Parser(const std::string& query)
 
 void Parser::parse_query(){
 
-    std::cout << "Parsing Query..." << std::endl;
+    std::print("Parsing Query...\n");
 
     switch (curr_lookahead){
 
@@ -50,8 +51,9 @@ void Parser::parse_select_statement(){
 
 void Parser::match(TokenType expected_symbol){
     if (curr_lookahead == expected_symbol){
-        printf("Successfully matched on %s\n", token_to_string(expected_symbol).c_str());
+        std::print("Successfully matched on {}\n", token_to_string(expected_symbol).c_str());
         curr_lookahead = _lexer.get_next_token();
+        _lexer.increase_word_count();
     } else {
         show_error(expected_symbol);
     }
@@ -60,12 +62,12 @@ void Parser::match(TokenType expected_symbol){
 void Parser::show_error(std::optional<TokenType> expected_symbol){
     if (expected_symbol) {
         
-        std::cout << std::format("Expected {}, but saw {} instead\n", 
+        std::print("Expected {}, but saw {} instead\n", 
                                 token_to_string(*expected_symbol), 
                                 token_to_string(curr_lookahead));
                         
     } else {
-        std::cout << "Unknown error occurred on word {}" << std::endl;
+        std::print("Unknown error occurred on word {}", _lexer.get_word_count());
     }
 
     exit(EXIT_FAILURE);

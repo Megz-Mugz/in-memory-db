@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../include/parser.hpp"
 #include "../include/database.hpp"
+#include <print>
 
 int main(){
     
@@ -10,6 +11,6 @@ int main(){
     Database db;
     parser.parse_query();
 
-    std::cout << "Query Successfully executed" << std::endl;
+    std::print("Query Successfully executed\n");
     return EXIT_SUCCESS;
 }
