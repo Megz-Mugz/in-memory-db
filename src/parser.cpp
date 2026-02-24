@@ -1,10 +1,14 @@
 #include "../include/parser.hpp"
+#include "../include/lexer.hpp"
 
-Parser::Parser(){
-    curr_lookahead = get_next_token();
+Parser::Parser(const std::string& query)
+    : _lexer(query),
+    curr_lookahead{_lexer.get_next_token()}
+      
+{
 }
 
-void Parser::parse_query(std::string_view query){
+void Parser::parse_query(){
 
     std::cout << "Parsing Query..." << std::endl;
 
@@ -47,16 +51,10 @@ void Parser::parse_select_statement(){
 void Parser::match(TokenType expected_symbol){
     if (curr_lookahead == expected_symbol){
         printf("Successfully matched on %s\n", token_to_string(expected_symbol).c_str());
-        curr_lookahead = get_next_token();
+        curr_lookahead = _lexer.get_next_token();
     } else {
         show_error(expected_symbol);
     }
-}
-
-
-TokenType Parser::get_next_token(){
-    // TODO build out lexer
-    return TokenType::SELECT_T;
 }
 
 void Parser::show_error(std::optional<TokenType> expected_symbol){

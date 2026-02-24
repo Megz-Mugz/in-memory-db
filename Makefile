@@ -31,10 +31,10 @@ clean:
 	rm -rf $(BUILD_DIR) $(TARGET)
 
 # ===== Run =====
-run: all
+r: all
 	./$(TARGET)
 
-debug: 
+debug: all
 	$(LLDB) ./$(TARGET)
 
 
