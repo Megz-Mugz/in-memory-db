@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <unordered_map>
+#include <set>
 
 using Token_str = std::string;
 
@@ -24,12 +25,11 @@ enum class TokenType {
     // TODO: add more here as needed
 };
 
-
-const char STAR = '*';
-const char EQUALS = '=';
-const char LESS_THAN = '<';
-const char GREATER_THAN = '>';
-const char EXCLAMATION = '!';
+const std::unordered_map<Token_str, TokenType> special_symbols = {
+    {"SELECT", TokenType::SELECT_T},
+    {"FROM", TokenType::FROM_T},
+    // TODO add more here
+};
 
 /**
  * Mainly for error reporting & debugging purposes

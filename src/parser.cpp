@@ -5,9 +5,7 @@
 Parser::Parser(const std::string& query)
     : _lexer(query),
     curr_lookahead{_lexer.get_next_token()}
-      
-{
-}
+    {}
 
 void Parser::parse_query(){
 
@@ -39,10 +37,15 @@ void Parser::parse_select_statement(){
     
     if (curr_lookahead == TokenType::SELECT_T){
         match(TokenType::SELECT_T);
-        parse_column_list();
+        
+        // parse_column_list();
+        match(TokenType::STAR_T);
+
         match(TokenType::FROM_T);
-        match(TokenType::IDENTIFIER_T);
-        parse_where_clause();
+        match(TokenType::IDENTIFIER_T); // usually a table name
+        
+        // parse_where_clause();
+        match(TokenType::END_OF_FILE_T);
         return;
     }
     

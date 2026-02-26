@@ -18,6 +18,8 @@ private:
 
     void skip_whitespace();
 
+    std::string uppercase_string(const std::string& original_str);
+
     std::optional<TokenType> tokenize_operators();
 
     std::optional<TokenType> tokenize_keywords_and_identifiers();
