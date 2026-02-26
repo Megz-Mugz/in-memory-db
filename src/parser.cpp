@@ -37,15 +37,12 @@ void Parser::parse_select_statement(){
     
     if (curr_lookahead == TokenType::SELECT_T){
         match(TokenType::SELECT_T);
-        
-        // parse_column_list();
-        match(TokenType::STAR_T);
-
+        parse_column_list();
         match(TokenType::FROM_T);
         match(TokenType::IDENTIFIER_T); // usually a table name
         
-        // parse_where_clause();
-        match(TokenType::END_OF_FILE_T);
+        parse_where_clause();
+        // match(TokenType::END_OF_FILE_T);
         return;
     }
     
@@ -70,7 +67,7 @@ void Parser::show_error(std::optional<TokenType> expected_symbol){
                                 token_to_string(curr_lookahead));
                         
     } else {
-        std::print("Unknown error occurred on word {}", _lexer.get_word_count());
+        std::print("Unknown error occurred on word {}\n", _lexer.get_word_count());
     }
 
     exit(EXIT_FAILURE);
@@ -88,9 +85,33 @@ void Parser::parse_delete_statement(){
 }
 
 void Parser::parse_column_list(){
-    // TODO
+    if (curr_lookahead == TokenType::STAR_T){
+        match(TokenType::STAR_T);
+    } else if (curr_lookahead == TokenType::IDENTIFIER_T){
+        match(TokenType::IDENTIFIER_T);
+        parse_column_list_helper();
+    } else {
+        return show_error();
+    }
 }
 
 void Parser::parse_where_clause(){
     // TODO
+}
+
+/**
+ * Helper method for parsing the column list, used to eliminate a common prefix with id , 
+ */
+void Parser::parse_column_list_helper(){
+
+    if (curr_lookahead == TokenType::COMMA_T){
+        match(TokenType::COMMA_T);
+        match(TokenType::IDENTIFIER_T);
+        parse_column_list_helper();
+    // epsilon state transition
+    } else if (curr_lookahead == TokenType::FROM_T){
+        return;
+    } else {
+        show_error();
+    }
 }

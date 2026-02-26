@@ -21,6 +21,7 @@ enum class TokenType {
     GREATER_THAN_T,
     GREATER_THAN_EQ_T,
     LESS_THAN_EQ_T,
+    COMMA_T,
 
     // TODO: add more here as needed
 };
@@ -49,6 +50,7 @@ inline std::string token_to_string(TokenType t) {
         case TokenType::NOT_EQUAL: return "!=";
         case TokenType::LESS_THAN_T: return "<";
         case TokenType::GREATER_THAN_T: return ">";
+        case TokenType::COMMA_T: return ",";
         default: return "UNKNOWN_TOKEN";
     }
 }

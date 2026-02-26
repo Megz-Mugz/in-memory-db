@@ -5,7 +5,7 @@
 
 int main(){
     
-    std::string query = "  select * from users";
+    std::string query = "  SELECT fname, lname, mname from users";
     
     Parser parser(query);
     Database db;

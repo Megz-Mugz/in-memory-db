@@ -60,6 +60,10 @@ std::optional<TokenType> Lexer::tokenize_operators(){
         case '=':
             cursor++;
             return TokenType::EQUALS_T;
+        
+        case ',':
+            cursor++;
+            return TokenType::COMMA_T;
 
         case '<':
             if (check_cursor_bounds() && _query[cursor+1] == '='){
@@ -114,10 +118,8 @@ std::optional<TokenType> Lexer::tokenize_keywords_and_identifiers(){
     auto lookup = special_symbols.find(upper_str);
 
     if (lookup != special_symbols.end()){
-        cursor++;
         return lookup->second;
     } else {
-        cursor++;
         return TokenType::IDENTIFIER_T;
     }
 
@@ -125,7 +127,7 @@ std::optional<TokenType> Lexer::tokenize_keywords_and_identifiers(){
 }
 
 std::optional<TokenType> Lexer::tokenize_strings(){
-
+    // TODO implement later w/ where clauses
     return std::nullopt;
 }
 

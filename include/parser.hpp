@@ -22,6 +22,8 @@ private:
     void parse_update_statement();
     void parse_delete_statement();
 
+    void parse_column_list_helper();
+
     void parse_column_list();
     void parse_where_clause();
 };
