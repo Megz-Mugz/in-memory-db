@@ -1,6 +1,6 @@
 # ===== Compiler settings =====
 CXX := clang++
-CXXFLAGS := -std=c++23 -Wall -Wextra -pedantic -g
+CXXFLAGS := -std=c++26 -Wall -Wextra -pedantic -g
 
 # ===== Directories =====
 SRC_DIR := src
