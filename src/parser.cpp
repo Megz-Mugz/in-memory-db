@@ -4,7 +4,7 @@
 
 Parser::Parser(const std::string& query)
     : _lexer(query),
-    curr_lookahead{_lexer.get_next_token()}
+    curr_lookahead{_lexer.get_next_token().first}
     {}
 
 void Parser::parse_query(){
@@ -42,8 +42,6 @@ void Parser::parse_select_statement(){
         match(TokenType::IDENTIFIER_T); // usually a table name
         
         parse_where_clause();
-        // match(TokenType::END_OF_FILE_T);
-        return;
     }
     
     
@@ -51,8 +49,12 @@ void Parser::parse_select_statement(){
 
 void Parser::match(TokenType expected_symbol){
     if (curr_lookahead == expected_symbol){
-        std::print("Successfully matched on {}\n", token_to_string(expected_symbol).c_str());
-        curr_lookahead = _lexer.get_next_token();
+        // TODO just for debugging purposes while developing
+        std::print("Successfully matched on <{} -> {}>\n", 
+            token_to_string(expected_symbol), 
+            _lexer.get_current_lexeme());
+
+        curr_lookahead = _lexer.get_next_token().first;
         _lexer.increase_word_count();
     } else {
         show_error(expected_symbol);
@@ -114,4 +116,9 @@ void Parser::parse_column_list_helper(){
     } else {
         show_error();
     }
+}
+
+
+TokenType Parser::get_curr_lookahead(void){
+    return curr_lookahead;
 }

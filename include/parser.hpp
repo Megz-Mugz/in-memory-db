@@ -10,6 +10,8 @@ public:
     explicit Parser(const std::string& query);
     void parse_query();
 
+    TokenType get_curr_lookahead(void);
+
 private:
     Lexer _lexer;
     TokenType curr_lookahead;     
